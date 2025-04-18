@@ -91,15 +91,16 @@ List all non-countries.
 ## (skills: select, where)
 
 run_sql_and_return_html(cnx,"""
-select 
+SELECT 
     country_code,
     country_short_name,
     country_region
-from 
+FROM 
     world_bank_data.wdi_country
-where 
-    country_region is null
-order by 
+WHERE 
+    country_region IS NULL
+    OR country_short_name IN ('World', 'Upper middle income')
+ORDER BY 
     country_short_name;
 """)
 ```
